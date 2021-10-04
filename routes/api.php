@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ExecutorController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['middleware' => ['api','cors']], function () {
-    Route::get('/qq', function () {
-        return 'suca';
-    });
+Route::group(['middleware' => ['api']], function () {
+    Route::get('/tasks', [TaskController::class, 'index']);
+    Route::get('/executors', [ExecutorController::class, 'index']);
 });
